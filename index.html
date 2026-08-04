@@ -1,145 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Restaurant Menu & Info</title>
-  <style>
-    :root {
-      --bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --text: #212529;
-      --primary: #2563eb;
-      --whatsapp: #25d366;
-      --facebook: #1877f2;
-      --instagram: #e4405f;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 1rem;
-    }
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      padding: 1rem 0;
-    }
-    .logo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary);
-      margin-bottom: 0.5rem;
-      background-color: #eee;
-    }
-    h1 {
-      margin: 0.2rem 0;
-      font-size: 1.8rem;
-    }
-    .section-title {
-      font-size: 1.2rem;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 0.4rem;
-      margin-top: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    /* Buttons and Links */
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .btn {
-      display: block;
-      text-align: center;
-      background-color: var(--primary);
-      color: white;
-      text-decoration: none;
-      padding: 0.85rem;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .btn-whatsapp { background-color: var(--whatsapp); }
-    .btn-facebook { background-color: var(--facebook); }
-    .btn-instagram { background-color: var(--instagram); }
-    .btn-map { background-color: #495057; }
-    
-    /* Menu Photos */
-    .menu-card {
-      background: var(--card-bg);
-      padding: 0.8rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      margin-bottom: 1.2rem;
-      text-align: center;
-    }
-    .menu-card h3 {
-      margin: 0 0 0.6rem 0;
-      font-size: 1.1rem;
-    }
-    .menu-img {
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mackerel — Menu & Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep:        #0a2f38;   /* deep sea ink */
+    --teal:        #0f5b6c;   /* mid water teal */
+    --teal-light:  #1f8296;   /* shallow water */
+    --foam:        #eef6f6;   /* pale sea foam bg */
+    --card:        #ffffff;
+    --coral:       #ff6b47;   /* grilled-fish coral, primary accent */
+    --coral-deep:  #e8532f;
+    --gold:        #d3a24a;   /* scale shimmer, used sparingly */
+    --ink:         #10262c;
+    --ink-mute:    #52707a;
+    --line:        #d7e6e6;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--foam);
+    color: var(--ink);
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.1rem 3rem;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, var(--deep) 0%, var(--teal) 62%, var(--teal-light) 100%);
+    padding: 2.6rem 1.1rem 4.4rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.14;
+    background-image:
+      radial-gradient(circle at 20% 30%, transparent 0 7px, rgba(255,255,255,0.5) 8px, transparent 9px),
+      radial-gradient(circle at 60% 60%, transparent 0 5px, rgba(255,255,255,0.4) 6px, transparent 7px),
+      radial-gradient(circle at 85% 20%, transparent 0 4px, rgba(255,255,255,0.4) 5px, transparent 6px),
+      radial-gradient(circle at 40% 85%, transparent 0 6px, rgba(255,255,255,0.4) 7px, transparent 8px);
+    background-size: 220px 220px;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.78);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+  }
+  .eyebrow svg { width: 16px; height: 16px; }
+
+  .logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.85);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    background: #fff;
+    margin-bottom: 0.9rem;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #fff;
+    margin: 0 0 0.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.98rem;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    margin: 0;
+  }
+
+  /* wave that separates hero from body */
+  .wave {
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    line-height: 0;
+  }
+  .wave svg { width: 100%; height: 46px; display: block; }
+
+  /* ---------- SECTIONS ---------- */
+  section { margin-top: 2.1rem; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.18rem;
+    color: var(--deep);
+    margin: 0 0 0.9rem;
+  }
+  .section-title svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--coral); }
+
+  /* ---------- ACTION LIST (calls / whatsapp / map / social) ---------- */
+  .action-card {
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 2px 14px rgba(10,47,56,0.06);
+    overflow: hidden;
+  }
+  .action-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.95rem 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s ease;
+  }
+  .action-row:last-child { border-bottom: none; }
+  .action-row:active { background: var(--foam); }
+
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .icon-circle svg { width: 19px; height: 19px; }
+
+  .ic-call { background: var(--teal); }
+  .ic-whatsapp { background: #2fb56a; }
+  .ic-map { background: var(--deep); }
+  .ic-facebook { background: #1877f2; }
+  .ic-instagram { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); }
+
+  .action-text { flex: 1; min-width: 0; }
+  .action-title { font-weight: 700; font-size: 0.95rem; }
+  .action-sub { font-size: 0.8rem; color: var(--ink-mute); margin-top: 0.1rem; }
+
+  .chevron { color: #c3d3d3; flex-shrink: 0; }
+  .chevron svg { width: 16px; height: 16px; }
+
+  /* ---------- MENU ---------- */
+  .menu-toggle {
+    display: flex;
+    background: var(--card);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: 0 2px 14px rgba(10,47,56,0.06);
+    margin-bottom: 1rem;
+  }
+  .menu-toggle button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.6rem 0.5rem;
+    border-radius: 999px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--ink-mute);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .menu-toggle button.active {
+    background: var(--coral);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(255,107,71,0.35);
+  }
+
+  .menu-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 0.7rem;
+    box-shadow: 0 2px 14px rgba(10,47,56,0.06);
+    display: none;
+  }
+  .menu-card.active { display: block; }
+  .menu-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: 2.6rem;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 0.78rem;
+  }
+  footer .scales {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 0.7rem;
+    opacity: 0.6;
+  }
+  footer .scales span {
+    width: 8px; height: 8px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--teal-light);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 360px) {
+    h1 { font-size: 2.05rem; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    
-    <!-- HEADER & LOGO -->
-    <header>
-      <!-- Put your logo picture file in the same folder and name it logo.jpg -->
-      <img src="logo.jpg" alt="Restaurant Logo" class="logo">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12c3-4 6-4 8 0s5 4 8 0"/><path d="M2 7c3-4 6-4 8 0s5 4 8 0" opacity="0.5"/></svg>
+        Seafood, grilled fresh
+      </span>
+      <img src="logo.jpg" alt="Mackerel logo" class="logo">
       <h1>Mackerel</h1>
-    </header>
-
-    <!-- CALL & WHATSAPP SECTION -->
-    <h2 class="section-title">Call Us & Order</h2>
-    <div class="btn-group">
-      <!-- Click-to-call numbers: replace +2010... with your real phone numbers -->
-      <a href="tel:+201010946664" class="btn">📞 Call Branch / Line 1</a>
-      <a href="tel:+201055538300" class="btn">📞 Call Line 2</a>
-      <a href="tel:+201055566142" class="btn">📞 Call Line 3</a>
-      
-      <!-- WhatsApp button: use your country code without '+' or spaces -->
-      <a href="https://wa.me/201010946664" target="_blank" class="btn btn-whatsapp">💬 Message on WhatsApp</a>
+      <p class="tagline">Line-caught. Grilled simply. Served today.</p>
     </div>
-
-    <!-- 2 MENUS (IMAGE SECTION) -->
-    <h2 class="section-title">Our Menus</h2>
-    
-    <div class="menu-card">
-      <h3>English Menu</h3>
-      <!-- Put your main menu photo in the same folder and name it menu1.jpg -->
-      <img src="Menu1.jpeg" alt="Main Menu" class="menu-img">
+    <div class="wave">
+      <svg viewBox="0 0 500 46" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,20 C60,45 120,0 180,20 C240,40 300,5 360,20 C410,32 460,10 500,22 L500,46 L0,46 Z" fill="#eef6f6"/>
+      </svg>
     </div>
+  </div>
 
-    <div class="menu-card">
-      <h3>Arabic Menu</h3>
-      <!-- Put your second menu photo in the same folder and name it menu2.jpg -->
-      <img src="Menu2.jpeg" alt="Drinks Menu" class="menu-img">
-    </div>
+  <div class="wrap">
 
-    <!-- LOCATION & SOCIAL MEDIA -->
-    <h2 class="section-title">Find Us & Follow Us</h2>
-    <div class="btn-group">
-      <!-- Replace with your actual Google Maps share URL -->
-      <a href="https://maps.app.goo.gl/AuUUNCk52T32KKz19" target="_blank" class="btn btn-map">📍 View Location on Google Maps</a>
-      
-      <!-- Replace with your actual Facebook and Instagram profile URLs -->
-      <a href="https://www.facebook.com/mackerel.restaurant" target="_blank" class="btn btn-facebook">👍 Follow on Facebook</a>
-      <a href="https://www.instagram.com/mackerel.restaurant" target="_blank" class="btn btn-instagram">📸 Follow on Instagram</a>
-    </div>
+    <!-- CALL & ORDER -->
+    <section>
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+        Call &amp; Order
+      </h2>
+      <div class="action-card">
+        <a href="tel:+201010946664" class="action-row">
+          <span class="icon-circle ic-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">Branch / Line 1</div>
+            <div class="action-sub">+20 10 1094 6664</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+        <a href="tel:+201055538300" class="action-row">
+          <span class="icon-circle ic-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">Line 2</div>
+            <div class="action-sub">+20 10 5553 8300</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+        <a href="tel:+201055566142" class="action-row">
+          <span class="icon-circle ic-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">Line 3</div>
+            <div class="action-sub">+20 10 5556 6142</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+        <a href="https://wa.me/201010946664" target="_blank" class="action-row">
+          <span class="icon-circle ic-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.41-1.35a9.85 9.85 0 0 0 4.63 1.15h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.2c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.13 1.02-2.42.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.18 1.53 1.91 1.06.95 1.94 1.24 2.22 1.38.28.14.44.12.61-.07.16-.19.7-.81.88-1.09.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36z"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">Message on WhatsApp</div>
+            <div class="action-sub">Quick orders &amp; questions</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- MENUS -->
+    <section>
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16"/><path d="M4 4c4 0 4 3 8 3s4-3 8-3"/><path d="M4 12c4 0 4 3 8 3s4-3 8-3"/></svg>
+        Our Menus
+      </h2>
+      <div class="menu-toggle">
+        <button type="button" class="active" onclick="showMenu('en', this)">English Menu</button>
+        <button type="button" onclick="showMenu('ar', this)">Arabic Menu</button>
+      </div>
+      <div class="menu-card active" id="menu-en">
+        <img src="Menu1.jpeg" alt="English Menu" class="menu-img">
+      </div>
+      <div class="menu-card" id="menu-ar">
+        <img src="Menu2.jpeg" alt="Arabic Menu" class="menu-img">
+      </div>
+    </section>
+
+    <!-- LOCATION & SOCIAL -->
+    <section>
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Find Us &amp; Follow Us
+      </h2>
+      <div class="action-card">
+        <a href="https://maps.app.goo.gl/AuUUNCk52T32KKz19" target="_blank" class="action-row">
+          <span class="icon-circle ic-map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">View Location</div>
+            <div class="action-sub">Open in Google Maps</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+        <a href="https://www.facebook.com/mackerel.restaurant" target="_blank" class="action-row">
+          <span class="icon-circle ic-facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.5-3.5h-3V7.7c0-1 .3-1.7 1.7-1.7H16.6V2.8C16.3 2.8 15.3 2.7 14.1 2.7c-2.5 0-4.2 1.5-4.2 4.3v2H7.4v3.5H10V21h3.5z"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">Facebook</div>
+            <div class="action-sub">@mackerel.restaurant</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+        <a href="https://www.instagram.com/mackerel.restaurant" target="_blank" class="action-row">
+          <span class="icon-circle ic-instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.4" cy="6.6" r="1"/></svg></span>
+          <span class="action-text">
+            <div class="action-title">Instagram</div>
+            <div class="action-sub">@mackerel.restaurant</div>
+          </span>
+          <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="scales">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      Mackerel Restaurant · Fresh from the sea
+    </footer>
 
   </div>
+
+<script>
+  function showMenu(which, btn) {
+    document.querySelectorAll('.menu-toggle button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.menu-card').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('menu-' + which).classList.add('active');
+  }
+</script>
+
 </body>
 </html>
